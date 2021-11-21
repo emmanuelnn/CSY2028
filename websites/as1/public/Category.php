@@ -1,36 +1,60 @@
 <?php
-$myTitle = 'Northampton News - Category';
+$myTitle = 'Northampton News - View Articles';
 require '../header.php';
 ?>
 
 
 
 
-<h2>Select Category:</h2>
-<ul>
-
 <?php
 
-    $server = 'mysql';
-    $username = 'student';
-    $password = 'student';
 
-    $schema = 'assignment1';
-    
-    $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $password);
-    
-    
-    
-        $stmt = $pdo->prepare('SELECT * FROM assignment1.category');
-    
-        $stmt->execute();
-    
-        foreach ($stmt as $row) {
-            echo '<li><a href="viewArticle.php?categoryId=' . $row['categoryId'] . '">' . $row['name'] . '</a></li>';
-        }
-    ?>
+
+if (isset($_GET['categoryId']))  {
+
+
+
+	$server = 'mysql';
+	$username = 'student';
+	$password = 'student';
+
+	$schema = 'assignment1';
+	
+	$pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $password);
+	
+	
+		$categoryStmt = $pdo->prepare('SELECT * FROM assignment1.category WHERE categoryId = :categoryId');
+	$articleStmt = $pdo->prepare('SELECT * FROM assignment1.article WHERE categoryId = :categoryId');
+
+	$values = [
+		'categoryId' => $_GET['categoryId']
+	];
+
+	$categoryStmt->execute($values);
+	$articleStmt->execute($values);
+
+
+	$category = $categoryStmt->fetch();
+
+	echo '<h1>' . $category['name'] . '</h1>';
+
+	echo '<ul>';
+	foreach ($articleStmt as $article) {
+		echo  '<h2>' . $article['title'] . '</h2>';
+        echo  '<p>' . $article['content'] . '<p>';
+        echo  '<p> Publish on ' . $article['publishDate'] . '<p>';
+
+		
+	}
+	echo '</ul>';
+}
+?>
+
+
 
 
 <?php
 require '../footer.php';
 ?>
+
+

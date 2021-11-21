@@ -32,7 +32,7 @@ session_start();
 
 				}
 				?>
-								<li><a href="Category.php">Select Category</a>
+								<li><a href="Categorymain.php">Select Category</a>
 					<ul>
 					<?php
 
@@ -51,7 +51,7 @@ $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $passw
 	$stmt->execute();
 
 	foreach ($stmt as $row) {
-		echo '<li><a href="viewArticle.php?categoryId=' . $row['categoryId'] . '">' . $row['name'] . '</a></li>';
+		echo '<li><a href="Category.php?categoryId=' . $row['categoryId'] . '">' . $row['name'] . '</a></li>';
 	}
 ?>
 
