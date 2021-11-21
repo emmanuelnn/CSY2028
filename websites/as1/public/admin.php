@@ -9,6 +9,7 @@ if (isset($_POST['submit'])) {
 
             $_SESSION['loggedin'] = true;
 
+            echo '<h1>Admin login successful</h1>';
 
             echo '<p><a href="adminArticles.php">Manage article</a></p>';
 
@@ -18,9 +19,11 @@ if (isset($_POST['submit'])) {
            
         }
          else {
+
+
             echo '<p>Admin email and password is invalid</p>';
 
-            echo '<a href="admin.php">Please try again</a>';
+            echo '<a href="admin.php">Click here to try again</a>';
          }
     }
 
