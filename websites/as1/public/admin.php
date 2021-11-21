@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
          else {
 
 
-            echo '<p>Admin email and password is invalid</p>';
+            echo '<p>Admin Email and password is invalid</p>';
 
             echo '<a href="admin.php">Click here to try again</a>';
          }
