@@ -16,7 +16,8 @@ $pdo = new PDO('mysql:dbname=' . $schema . ';host=' . $server, $username, $passw
 
 
 $stmt = $pdo->prepare('SELECT * FROM assignment1.article WHERE articleid = :articleid');
-    
+
+   
 
 $values = [
     'articleid' => $_GET['articleid'],
@@ -41,7 +42,10 @@ $row = $stmt->fetch();
 
 
 if (isset($_POST['submit'])) {
- $_SESSION['name'] = $_POST['name'];
+    $comment = $pdo->prepare('INSERT INTO assignment1.comment (idcomment, name, email, commentarea)
+                            VALUES (:idcomment, :name, :email, :commentarea)');
+            
+
  
  echo 'comment was added';
 }
