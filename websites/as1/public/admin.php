@@ -5,7 +5,7 @@ require '../header.php';
 if (isset($_POST['submit'])) {
     
         //Check they entered the correct username/password
-        if ($_POST['adminuser'] === 'adminuser' && $_POST['adminpass'] === 'adminpass') {
+        if ($_POST['adminuser'] === 'admin@admin.com' && $_POST['adminpass'] === 'adminpassword') {
 
             $_SESSION['loggedin'] = true;
 
